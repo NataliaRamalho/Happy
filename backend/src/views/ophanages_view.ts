@@ -8,7 +8,7 @@ export default{
             id: orphanage.id,
             name: orphanage.name,
             latitude: orphanage.latitude,
-            longitude: orphanage.latitude,
+            longitude: orphanage.longitude,
             about: orphanage.about,
             instruction: orphanage.instruction,
             opening_hours: orphanage.opening_hours,

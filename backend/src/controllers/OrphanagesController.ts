@@ -8,14 +8,13 @@ import orphanageView from '../views/ophanages_view'
 
 import * as Yup  from 'yup' 
 
-export default{
+export default{   
     async index(req:Request, res: Response){
         const orphanagesRepository = getRepository(Orphanage);
 
         const orphanages = await orphanagesRepository.find({
             relations: ['images']
         });
-        
         return res.json(orphanageView.renderMany(orphanages));
     },
 
@@ -45,6 +44,8 @@ export default{
         
      } = req.body;
 
+     
+     
      const orphanagesRepository = getRepository(Orphanage);
 
      const requestImages = req.files as Express.Multer.File[];
@@ -60,7 +61,7 @@ export default{
         about, 
         instruction, 
         opening_hours, 
-        open_on_weekends, 
+        open_on_weekends: open_on_weekends === 'true', 
         images
      }
      
@@ -77,6 +78,7 @@ export default{
               path: Yup.string().required()
         }))   
     })
+     
 
     await schema.validate(data,{
         abortEarly: false,
