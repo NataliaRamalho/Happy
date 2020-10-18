@@ -152,12 +152,12 @@ export default function CreateOrphanage() {
 
               <div className="button-select">
                 <button type="button" 
-                className = {open_on_weekends ? 'active ': ' '}
+                className = {open_on_weekends ? 'active ': ''}
                 onClick={()=> setOpenOnWeekens(true)}>
                   Sim</button>
                 <button 
                  type="button"
-                 className = {!open_on_weekends ? 'active ': ' '}
+                 className = {!open_on_weekends ? 'disabled ': ''}
                  onClick={()=> setOpenOnWeekens(false)}>
                    Não</button>
               </div>

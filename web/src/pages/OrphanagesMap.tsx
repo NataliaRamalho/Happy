@@ -8,8 +8,6 @@ import {FiPlus, FiArrowRight} from 'react-icons/fi';
 
 import {Map, TileLayer, Marker,Popup} from 'react-leaflet';
 
-
-
 import '../styles/pages/orphanages-map.css'
 import mapIcon from '../utils/mapIcon';
 import { useEffect , useState} from 'react';
@@ -71,6 +69,7 @@ function OrphanagesMap() {
                <Link to={`/orphanages/${orphanage.id}`}>
                   <FiArrowRight size={20} color="FFF"/>
                </Link>
+
              </Popup>
            </Marker>
          )
@@ -79,7 +78,10 @@ function OrphanagesMap() {
        </Map>
        <Link to="/orphanages/create" className="create-orphanage">
           <FiPlus size ={32} color='#FFF'></FiPlus> 
-       </Link>      
+       </Link>     
+       <div className="quantOrphanages">
+          <h1>{orphanages.length} casas de acolhimento institucional </h1>
+      </div>
     </div>
    )
 }

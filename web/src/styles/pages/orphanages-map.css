@@ -102,3 +102,26 @@
     display: none;
 }
 
+.quantOrphanages {
+    z-index: 10;
+    position: absolute;
+    width: 648px;
+    height: 64px;
+    left: 600px;
+    bottom: 40px;
+    background: rgba(245, 248, 250, 0.5);
+    border: 1px solid rgba(161, 233, 197, 0.12);
+    box-sizing: border-box;
+    border-radius: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.quantOrphanages h1 {
+    color: gray;
+    font-size: 30px;
+    font-style: normal;
+    align-self: center;
+    glyph-orientation-horizontal: center;
+}
+
