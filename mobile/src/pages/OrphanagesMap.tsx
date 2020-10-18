@@ -1,12 +1,13 @@
-import React,{useEffect, useState} from 'react';
+import React,{useState} from 'react';
 import { StyleSheet, View, Dimensions, Text } from 'react-native';
 import { Marker, Callout,PROVIDER_GOOGLE } from 'react-native-maps';
 import MapView from 'react-native-maps'
 import mapMarker from '../images/map-marker.png'
 import {Feather} from '@expo/vector-icons'
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useFocusEffect } from '@react-navigation/native';
 import { RectButton } from 'react-native-gesture-handler';
 import api from '../servers/api';
+
 interface Orphanage{
   id: number;
   name: string; 
@@ -18,17 +19,14 @@ export default function OrphanagesMap(){
     const[orphanages, setOrphanages] = useState<Orphanage[]>([]);
     const navigation = useNavigation();
 
-    console.log('teste')
-    console.log(orphanages)
-
-    useEffect(()=>{
+    useFocusEffect(()=>{
       api.get('orphanages').then(response=>{
         setOrphanages(response.data);
       })
-    }, [])
+    },)
 
-    function handleNavigateToOrphanageDetails(){
-      navigation.navigate('OrphagesDetails')
+    function handleNavigateToOrphanageDetails(id: number){
+      navigation.navigate('OrphagesDetails', {id})
     }
 
     function handleNavigateToCreateOrphanage(){
@@ -61,17 +59,16 @@ export default function OrphanagesMap(){
             }}
           >
             <Callout tooltip 
-              onPress={ handleNavigateToOrphanageDetails}>
+              onPress={()=> handleNavigateToOrphanageDetails(orphanage.id)}>
              <View style = {styles.calloutContainer}>
              <Text style = {styles.calloutText}>{orphanage.name}</Text>
-               
              </View>
             </Callout>
           </Marker>)
         })} 
         </MapView>
         <View style={styles.footer}>
-          <Text style={styles.footerText}> 2 orphanages </Text>
+      <Text style={styles.footerText}> {orphanages.length} orfanatos encontrados </Text>
           <RectButton style={styles.createOrphanageButton} 
             onPress={
               handleNavigateToCreateOrphanage
